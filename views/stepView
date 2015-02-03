@@ -1,0 +1,87 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>stepClass</title>
+<link type="text/css" rel="stylesheet" href="step.css" />
+</head>
+
+<body>
+
+<! Ініціалізація екземплярів класу>
+ <?php
+
+    $stepHeader = 'Як проводиться навчання?';
+    $stepSubheader = 'далі пояснення як ви будете вчитися крок за кроком';
+    $stepSize='700px';
+	$stepsContainerSize='960px';
+ 
+	$step1=new Step('images/step1.jpg','Реєстрація на сайті','Щоб Ви отримали доступ до переліку курсів та пройти пробні безкоштовні модулі і заняття зареєструйтесь на сайті.','1','крок');
+	$step2=new Step('images/step2.jpg','Вибір курсу чи модуля','Щоб стати спеціалістом певного напрямку та рівня виберіть для проходження відповідний курс. Якщо Вас цікавить виключно поглиблення знань в певному напрямку IT, то виберіть відповідний модуль.','2','крок');
+	$step3=new Step('images/step3.jpg','Проплата','Щоб розпочати проходження курсу чи модуля виберіть зручну схему оплати (схему оплати курсу чи модуля можна змінювати, також можлива помісячна оплата в кредит) та здійсніть оплату зручним Вам способом.','3','крок');
+	$step4=new Step('images/step4.jpg','Освоєння матеріалу','Вивчення матеріалу можливе шляхом читання тексту чи/і перегляду відео, які підготовлені для кожного заняття. Для цього на сторінці заняття виберіть спосіб, який Вам зручніший чи використовуйте обидва. Протягом освоєння матеріалу заняття виконуйте Проміжні тестові завдання. По завершенню кожного заняття виконуйте Підсумкове тестове завдання. Кожен модуль завершується Індивідуальним проектом чи Екзаменом, який приймають викладачі. Можна замовити індивідуальну консультацію викладача по темам та завданням чи обговорювати питання на тематичному форумі чи форумі групи.','4','крок');
+	$step5=new Step('images/step5.jpg','Завершення курсу','Підсумком курсу є Командний дипломний проект, який виконується разом із іншими студентами (склад команди формуєте самостійно чи рекомендує керівник, який затверджує тему і технічне завдання та асистенти проекту). Здача проекту передбачає передзахист та захист в он-лайн режимі із представленням технічної документації. Після захисту видається диплом та рекомендація для працевлаштування.','5','крок');
+
+	$stepsArray=array($step1,$step2,$step3,$step4,$step5);
+ ?>
+
+
+<! Верстка за допомогою масиву з екземплярами класу>
+	<div class="steps" style="width:<?php echo $stepsContainerSize; ?>" >
+
+    	 <div class="stepHeader">
+         			<h3><?php echo $stepHeader; ?></h3>
+         			<h5><?php echo $stepSubheader; ?></h5>
+         </div>
+
+<?php
+    foreach ($stepsArray as $stepValue)
+    {
+		if ($stepValue->stepNumber % 2 <> 0)
+		 {
+?>
+         <div class="stepLeft" 	style="width:<?php echo $stepSize; ?>" >
+					<div class="stepUrl">
+        		   		 <img src="<?php echo $stepValue->stepImage; ?>">
+        		    </div>
+					<div class="line">
+                    </div>
+
+                    <img class="hexagon" src="images/hexagon.png">
+					<div class="stepArticle">
+						<p class="stepNumber"><?php echo $stepValue->stepNumber; ?></p>
+						<p class="stepName"><?php echo $stepValue->stepName; ?></p>
+					</div>
+        			<div class="stepInfo" style="min-height:<?php echo $stepSize*0.23 . 'px';?> ">
+          				  <h4><?php echo $stepValue->stepTitle; ?></h4>
+              			  <p><?php echo $stepValue->stepText; ?></p>
+          			</div>
+         </div>
+		 <?php
+		 }
+		 else
+		 {
+		 ?>
+		 <div class="stepRight" style="width:<?php echo $stepSize; ?>" >
+					<div class="stepUrl">
+        		   		 <img src="<?php echo $stepValue->stepImage; ?>">
+        		    </div>
+					<div class="line">
+                    </div>
+                    <img class="hexagon" src="images/hexagon.png">
+					<div class="stepArticle">
+						<p class="stepNumber"><?php echo $stepValue->stepNumber; ?></p>
+						<p class="stepName"><?php echo $stepValue->stepName; ?></p>
+					</div>
+        			<div class="stepInfo" style="min-height:<?php echo $stepSize*0.23 . 'px';?> ">
+          				  <h4><?php echo $stepValue->stepTitle; ?></h4>
+              			  <p><?php echo $stepValue->stepText; ?></p>
+          			</div>
+         </div>
+<?php
+	    }
+	}
+?>
+	</div>
+</body>
+</html>
